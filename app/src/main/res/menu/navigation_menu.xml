@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/searchMedicineFragment"
         android:title="@string/search"
         android:icon="@drawable/search"/>
 
