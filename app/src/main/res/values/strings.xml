@@ -5,4 +5,6 @@
     <string name="search">검색</string>
     <string name="addMedicine">나의 약 추가</string>
     <string name="favorite">약 즐겨찾기</string>
+    <string name="search_input_medicine">제품명/성분명을 입력하세요.</string>
+    <string name="button_medicine">의약품</string>
 </resources>
