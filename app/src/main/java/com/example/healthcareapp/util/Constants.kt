@@ -9,5 +9,6 @@ class Constants {
         const val QUERY_SERVICE_KEY = "ServiceKey"
         const val QUERY_ITEM_NAME = "itemName"
         const val QUERY_TYPE = "type"
+        const val QUERY_NUM_OF_ROWS = "numOfRows"
     }
 }
