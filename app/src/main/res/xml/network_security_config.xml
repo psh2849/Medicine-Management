@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">apis.data.go.kr</domain>
+        <domain includeSubdomains="true">nedrug.mfds.go.kr</domain>
+        <trust-anchors>
+            <certificates src="@raw/digicertsha2562020ca1"/>
+            <certificates src="@raw/gsrsaovsslca2018"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
