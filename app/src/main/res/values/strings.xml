@@ -7,4 +7,14 @@
     <string name="favorite">약 즐겨찾기</string>
     <string name="search_input_medicine">제품명/성분명을 입력하세요.</string>
     <string name="button_medicine">의약품</string>
+    <string name="description_title">제품명</string>
+    <string name="description_company">업체명</string>
+    <string name="description_effect">효능</string>
+    <string name="description_use">사용법</string>
+    <string name="description_caution">주의사항</string>
+    <string name="description_sideEffect">부작용</string>
+    <string name="description_interaction">사용 중 주의해야 할 약 또는 음식</string>
+    <string name="description_storage">보관법</string>
+    <string name="mainImage">mainImage</string>
+    <string name="search_query_hint">제품명을 입력해주세요..</string>
 </resources>
