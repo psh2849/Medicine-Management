@@ -1,7 +1,10 @@
 package com.example.healthcareapp.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Item(
     @SerializedName("entpName")
     val companyName: String?,
@@ -29,4 +32,4 @@ data class Item(
     val updateDate: String?,
     @SerializedName("itemImage")
     val itemImage: String?
-)
+): Parcelable

@@ -28,5 +28,18 @@
         android:id="@+id/searchResultFragment"
         android:name="com.example.healthcareapp.ui.fragment.search.SearchResultFragment"
         android:label="fragment_search_result"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.healthcareapp.ui.fragment.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="item"
+            app:argType="com.example.healthcareapp.data.model.Item" />
+    </fragment>
 </navigation>

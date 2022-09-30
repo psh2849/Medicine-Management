@@ -1,13 +1,31 @@
 package com.example.healthcareapp.bindingadapter
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.healthcareapp.R
+import com.example.healthcareapp.data.model.Item
+import com.example.healthcareapp.ui.fragment.search.SearchResultFragmentDirections
 
 class SearchBindingAdapter {
     companion object {
+
+        @BindingAdapter("onMedicineClickListener")
+        @JvmStatic
+        fun onMedicineClickListener(medicineRowLayout: ConstraintLayout, item: Item) {
+            medicineRowLayout.setOnClickListener {
+                try {
+                    val action = SearchResultFragmentDirections.actionSearchResultFragmentToDetailFragment(item)
+                    medicineRowLayout.findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.d("onMedicineClickListener", e.toString())
+                }
+            }
+        }
 
         @BindingAdapter("loadImageUrl")
         @JvmStatic

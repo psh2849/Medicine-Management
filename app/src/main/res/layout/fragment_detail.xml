@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.fragment.detail.DetailFragment">
+
+        <ImageView
+            android:id="@+id/imageView_detail_mainImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/mainImage"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_detail_mainImage"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_title"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="한미치쏙정600밀리그램(디오스민)" />
+
+        <View
+            android:id="@+id/view_detail1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_title" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_company"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail1"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_company"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="한미약품(주)" />
+
+        <View
+            android:id="@+id/view_detail2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_company" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_effect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail2"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_effect"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약의 효능은 무엇입니까?" />
+
+        <View
+            android:id="@+id/view_detail3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_effect" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_use"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail3"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_use"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약은 어떻게 사용합니까?" />
+
+        <View
+            android:id="@+id/view_detail4"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_use" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_caution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_caution"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail4"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_caution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_caution"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약의 사용상 주의사항은 무엇입니까?" />
+
+        <View
+            android:id="@+id/view_detail5"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_caution" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_sideEffect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_sideEffect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail5"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_sideEffect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_sideEffect"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약은 어떤 이상반응이 나타날 수 있습니까?" />
+
+        <View
+            android:id="@+id/view_detail6"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_sideEffect" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_interaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_interaction"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail6"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_interaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_interaction"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?" />
+
+        <View
+            android:id="@+id/view_detail7"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_interaction" />
+
+        <TextView
+            android:id="@+id/textView_detail_description_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_storage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail7"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_detail_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_description_storage"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="이 약은 어떻게 보관해야 합니까?" />
+
+        <View
+            android:id="@+id/view_detail8"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_detail_storage" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
