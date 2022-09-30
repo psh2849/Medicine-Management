@@ -2,15 +2,17 @@ package com.example.healthcareapp.ui.fragment.search
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.SearchView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.healthcareapp.R
 import com.example.healthcareapp.adapter.SearchAdapter
 import com.example.healthcareapp.databinding.FragmentSearchResultBinding
 import com.example.healthcareapp.viewmodel.SearchMedicineViewModel
@@ -18,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchResultFragment : Fragment(), SearchView.OnQueryTextListener {
+class SearchResultFragment : Fragment() {
 
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
@@ -33,53 +35,90 @@ class SearchResultFragment : Fragment(), SearchView.OnQueryTextListener {
         // Inflate the layout for this fragment
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
-        setHasOptionsMenu(true)
-
+        // setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initSearchView()
         initRecyclerView()
     }
 
+    private fun initSearchView() {
+        binding.searchViewSearchResult.clearFocus()
+        binding.searchViewSearchResult.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(search: String?): Boolean {
+                search?.let {
+                    searchMedicine(search)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                Log.d("SearchResultFragment", p0.toString())
+                return true
+            }
+        })
+    }
+
     private fun initRecyclerView() {
-        binding.recyclerViewSearch.adapter = searchAdapter
-        binding.recyclerViewSearch.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewSearchResult.adapter = searchAdapter
+        binding.recyclerViewSearchResult.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_medicine, menu)
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.search_medicine, menu)
+//
+//        val search = menu.findItem(R.id.medicine_search)
+//        val searchView = search.actionView as? SearchView
+//
+//        searchView?.apply {
+//            maxWidth = Int.MAX_VALUE
+//            isSubmitButtonEnabled = true
+//            queryHint = context.getString(R.string.search_query_hint)
+//            setIconifiedByDefault(false)
+//            setOnQueryTextListener(this@SearchResultFragment)
+//        }
+//    }
 
-        val search = menu.findItem(R.id.medicine_search)
-        val searchView = search.actionView as? SearchView
-        searchView?.isSubmitButtonEnabled = true
-        searchView?.setOnQueryTextListener(this)
-    }
-
-    override fun onQueryTextSubmit(search: String?): Boolean {
-        search?.let {
-            searchMedicine(search)
-        }
-        return true
-    }
+//    override fun onQueryTextSubmit(search: String?): Boolean {
+//        search?.let {
+//            searchMedicine(search)
+//        }
+//        return true
+//    }
+//
+//    override fun onQueryTextChange(p0: String?): Boolean {
+//        Log.d("SearchResultFragment", p0.toString())
+//        return true
+//    }
 
     private fun searchMedicine(searchText: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(state = Lifecycle.State.RESUMED) {
-                searchMedicineViewModel.searchMedicine(searchMedicineViewModel.applySearchQueries(searchText))
+                searchMedicineViewModel.searchMedicine(
+                    searchMedicineViewModel.applySearchQueries(
+                        searchText
+                    )
+                )
                 searchMedicineViewModel.searchMedicineResponse.collect { result ->
-                    when(result) {
+                    when (result) {
                         is SearchState.Success -> {
-                            // Log.d("SearchResultFragment", result.medicine.body.items[0].itemName)
                             searchAdapter.submitList(result.medicine?.body?.items)
-                            binding.recyclerViewSearch.adapter = searchAdapter
+                            binding.recyclerViewSearchResult.adapter = searchAdapter
+                            binding.progressBarSearchResult.visibility = View.INVISIBLE
                         }
                         is SearchState.Loading -> {
+                            binding.progressBarSearchResult.visibility = View.VISIBLE
                             Log.d("SearchResultFragment", "Loading")
                         }
                         is SearchState.Fail -> {
+                            binding.progressBarSearchResult.visibility = View.INVISIBLE
+                            Toast.makeText(requireContext(), "불러 올 수 없습니다.", Toast.LENGTH_SHORT)
+                                .show()
                             Log.d("SearchResultFragment", "Fail")
                         }
                     }
@@ -87,12 +126,4 @@ class SearchResultFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
     }
-
-    override fun onQueryTextChange(p0: String?): Boolean {
-        Log.d("SearchResultFragment", p0.toString())
-        return true
-    }
-
-
-
 }
