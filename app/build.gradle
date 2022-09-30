@@ -3,7 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
-    id("androidx.navigation.safeargs")
+    id 'androidx.navigation.safeargs'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
 }
 
 android {
@@ -88,4 +90,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
+    // Jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
 }
