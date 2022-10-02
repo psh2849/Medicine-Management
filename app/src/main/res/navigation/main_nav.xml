@@ -9,7 +9,11 @@
         android:id="@+id/addMedicineFragment"
         android:name="com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineFragment"
         android:label="fragment_add_medicine"
-        tools:layout="@layout/fragment_add_medicine" />
+        tools:layout="@layout/fragment_add_medicine" >
+        <action
+            android:id="@+id/action_addMedicineFragment_to_addMedicineFirstFragment"
+            app:destination="@id/addMedicineFirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.healthcareapp.ui.fragment.favorite.FavoriteFragment"
@@ -42,4 +46,9 @@
             android:name="item"
             app:argType="com.example.healthcareapp.data.model.Item" />
     </fragment>
+    <fragment
+        android:id="@+id/addMedicineFirstFragment"
+        android:name="com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineFirstFragment"
+        android:label="fragment_add_medicine_first"
+        tools:layout="@layout/fragment_add_medicine_first" />
 </navigation>
