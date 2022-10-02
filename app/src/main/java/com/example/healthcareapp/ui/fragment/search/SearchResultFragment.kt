@@ -1,7 +1,6 @@
 package com.example.healthcareapp.ui.fragment.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,6 @@ class SearchResultFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
-        // setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -58,7 +56,6 @@ class SearchResultFragment : Fragment() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                Log.d("SearchResultFragment", p0.toString())
                 return true
             }
         })
@@ -68,33 +65,6 @@ class SearchResultFragment : Fragment() {
         binding.recyclerViewSearchResult.adapter = searchAdapter
         binding.recyclerViewSearchResult.layoutManager = LinearLayoutManager(requireContext())
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.search_medicine, menu)
-//
-//        val search = menu.findItem(R.id.medicine_search)
-//        val searchView = search.actionView as? SearchView
-//
-//        searchView?.apply {
-//            maxWidth = Int.MAX_VALUE
-//            isSubmitButtonEnabled = true
-//            queryHint = context.getString(R.string.search_query_hint)
-//            setIconifiedByDefault(false)
-//            setOnQueryTextListener(this@SearchResultFragment)
-//        }
-//    }
-
-//    override fun onQueryTextSubmit(search: String?): Boolean {
-//        search?.let {
-//            searchMedicine(search)
-//        }
-//        return true
-//    }
-//
-//    override fun onQueryTextChange(p0: String?): Boolean {
-//        Log.d("SearchResultFragment", p0.toString())
-//        return true
-//    }
 
     private fun searchMedicine(searchText: String) {
         lifecycleScope.launch {
@@ -113,13 +83,11 @@ class SearchResultFragment : Fragment() {
                         }
                         is SearchState.Loading -> {
                             binding.progressBarSearchResult.visibility = View.VISIBLE
-                            Log.d("SearchResultFragment", "Loading")
                         }
                         is SearchState.Fail -> {
                             binding.progressBarSearchResult.visibility = View.INVISIBLE
                             Toast.makeText(requireContext(), "불러 올 수 없습니다.", Toast.LENGTH_SHORT)
                                 .show()
-                            Log.d("SearchResultFragment", "Fail")
                         }
                     }
                 }
