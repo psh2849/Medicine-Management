@@ -26,4 +26,6 @@
     <string name="select_date">기간 선택</string>
     <string name="explain_medicine">어떤 약인지 설명해주세요.</string>
     <string name="explain_description">약 설명</string>
+    <string name="select_medicine">사용중인 약의 종류 선택해주세요.</string>
+    <string name="normal_type">약 종류</string>
 </resources>
