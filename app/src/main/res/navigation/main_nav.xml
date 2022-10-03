@@ -50,5 +50,18 @@
         android:id="@+id/addMedicineFirstFragment"
         android:name="com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineFirstFragment"
         android:label="fragment_add_medicine_first"
-        tools:layout="@layout/fragment_add_medicine_first" />
+        tools:layout="@layout/fragment_add_medicine_first" >
+        <action
+            android:id="@+id/action_addMedicineFirstFragment_to_addMedicineSecondFragment"
+            app:destination="@id/addMedicineSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMedicineSecondFragment"
+        android:name="com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineSecondFragment"
+        android:label="fragment_add_medicine_second"
+        tools:layout="@layout/fragment_add_medicine_second" >
+        <argument
+            android:name="medicineEntity"
+            app:argType="com.example.healthcareapp.data.database.entity.MedicineEntity" />
+    </fragment>
 </navigation>

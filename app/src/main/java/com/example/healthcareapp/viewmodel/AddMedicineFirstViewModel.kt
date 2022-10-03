@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddMedicineViewModel @Inject constructor(
+class AddMedicineFirstViewModel @Inject constructor(
 ) : ViewModel() {
     private val _addMedicineFirstImage = MutableLiveData<Uri>()
     val addMedicineFirstImage get() = _addMedicineFirstImage
