@@ -15,8 +15,10 @@ import com.example.healthcareapp.adapter.AddMedicineSecondAdapter
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.databinding.FragmentAddMedicineSecondBinding
 import com.example.healthcareapp.viewmodel.AddMedicineSecondViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AddMedicineSecondFragment : Fragment() {
 
     private val addSecondViewModel: AddMedicineSecondViewModel by viewModels()

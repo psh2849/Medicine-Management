@@ -2,14 +2,15 @@ package com.example.healthcareapp.ui.fragment.addMedicine
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.healthcareapp.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddMedicineFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +32,7 @@ class AddMedicineFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when(menuItem.itemId) {
+                return when (menuItem.itemId) {
                     R.id.medicine_add -> {
                         moveNextPage()
                         true
@@ -43,7 +44,8 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun moveNextPage() {
-        val action = AddMedicineFragmentDirections.actionAddMedicineFragmentToAddMedicineFirstFragment()
+        val action =
+            AddMedicineFragmentDirections.actionAddMedicineFragmentToAddMedicineFirstFragment()
         findNavController().navigate(action)
     }
 }

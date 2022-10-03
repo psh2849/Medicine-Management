@@ -19,16 +19,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.databinding.FragmentAddMedicineFirstBinding
 import com.example.healthcareapp.util.Constants
-import com.example.healthcareapp.viewmodel.AddMedicineViewModel
+import com.example.healthcareapp.viewmodel.AddMedicineFirstViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
 
+@AndroidEntryPoint
 class AddMedicineFirstFragment : Fragment() {
 
-    private val addMedicineViewModel: AddMedicineViewModel by viewModels()
+    private val addMedicineViewModel: AddMedicineFirstViewModel by viewModels()
 
     private var _binding: FragmentAddMedicineFirstBinding? = null
     private val binding get() = _binding!!
@@ -69,7 +73,20 @@ class AddMedicineFirstFragment : Fragment() {
 
         binding.buttonAddFirstNext.setOnClickListener {
             if (addMedicineViewModel.buttonEvent.value == true) {
+                val medicineEntity = MedicineEntity(
+                    0,
+                    addMedicineViewModel.addMedicineFirstImage.value.toString(),
+                    addMedicineViewModel.addMedicineFirstName.value.toString(),
+                    addMedicineViewModel.addMedicineFirstDescription.value.toString(),
+                    addMedicineViewModel.addMedicineFirstDate.value.toString(),
+                    null
+                )
 
+                val action =
+                    AddMedicineFirstFragmentDirections.actionAddMedicineFirstFragmentToAddMedicineSecondFragment(
+                        medicineEntity
+                    )
+                findNavController().navigate(action)
             }
         }
 
@@ -165,7 +182,7 @@ class AddMedicineFirstFragment : Fragment() {
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { _, changeYear, changeMonth, changeDay ->
                 addMedicineViewModel.addMedicineFirstDate.value =
-                    "$changeYear.$changeMonth.$changeDay"
+                    "$changeYear.${changeMonth + 1}.$changeDay"
             }
         DatePickerDialog(requireContext(), dateSetListener, year, month, day).show()
     }
