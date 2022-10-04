@@ -28,4 +28,5 @@
     <string name="explain_description">약 설명</string>
     <string name="select_medicine">사용중인 약의 종류 선택해주세요.</string>
     <string name="normal_type">약 종류</string>
+    <string name="using_medicine">사용 중인 약들</string>
 </resources>
