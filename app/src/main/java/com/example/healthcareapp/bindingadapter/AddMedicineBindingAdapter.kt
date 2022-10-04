@@ -1,5 +1,7 @@
 package com.example.healthcareapp.bindingadapter
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.healthcareapp.R
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineFragmentDirections
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddMedicineBindingAdapter {
 
@@ -57,7 +61,20 @@ class AddMedicineBindingAdapter {
         @BindingAdapter("addMedicineExpire")
         @JvmStatic
         fun setExpire(textView: TextView, expire: String) {
-            textView.text = expire
+            val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+            val expireDate = dateFormat.parse(expire)
+
+            val today = Calendar.getInstance()
+            val getCalculateDate = (expireDate!!.time - today.time.time) / (60 * 60 * 24 * 1000)
+
+            if(getCalculateDate - 1 < 0) {
+                textView.text = expire
+                textView.setTextColor(Color.RED)
+                textView.typeface = Typeface.DEFAULT_BOLD
+            } else {
+                textView.text = expire
+                textView.setTextColor(Color.BLACK)
+            }
         }
     }
 }
