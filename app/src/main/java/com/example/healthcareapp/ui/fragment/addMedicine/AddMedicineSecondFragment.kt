@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthcareapp.adapter.AddMedicineSecondAdapter
@@ -26,6 +27,7 @@ class AddMedicineSecondFragment : Fragment() {
     private val binding get() = _binding!!
     private val mAdapter: AddMedicineSecondAdapter by lazy { AddMedicineSecondAdapter() }
     private val args by navArgs<AddMedicineSecondFragmentArgs>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +50,9 @@ class AddMedicineSecondFragment : Fragment() {
             )
 
             addSecondViewModel.insertMedicineDatabase(medicineEntity)
+            val action =
+                AddMedicineSecondFragmentDirections.actionAddMedicineSecondFragmentToAddMedicineFragment()
+            findNavController().navigate(action)
         }
     }
 
