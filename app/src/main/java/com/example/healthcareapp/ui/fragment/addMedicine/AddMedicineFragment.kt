@@ -1,6 +1,7 @@
 package com.example.healthcareapp.ui.fragment.addMedicine
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -15,16 +16,16 @@ import com.example.healthcareapp.R
 import com.example.healthcareapp.adapter.AddMedicineAdapter
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.databinding.FragmentAddMedicineBinding
-import com.example.healthcareapp.viewmodel.AddMedicineSecondViewModel
+import com.example.healthcareapp.viewmodel.AddMedicineViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AddMedicineFragment : Fragment() {
 
-    private val mAdapter by lazy { AddMedicineAdapter() }
-    private val addMedicineSecondViewModel: AddMedicineSecondViewModel by viewModels()
+    private val addMedicineViewModel: AddMedicineViewModel by viewModels()
+    private val mAdapter by lazy { AddMedicineAdapter(requireActivity(), addMedicineViewModel) }
+
     private var _binding: FragmentAddMedicineBinding? = null
     private val binding get() = _binding!!
 
@@ -52,7 +53,7 @@ class AddMedicineFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.medicine_add -> {
+                    R.id.medicine_add_register -> {
                         moveNextPage()
                         true
                     }
@@ -71,7 +72,7 @@ class AddMedicineFragment : Fragment() {
     private fun initViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(state = Lifecycle.State.RESUMED) {
-                addMedicineSecondViewModel.readMedicine.observe(viewLifecycleOwner) { entity ->
+                addMedicineViewModel.readMedicine.observe(viewLifecycleOwner) { entity ->
                     initRecyclerView(entity)
                 }
             }
@@ -79,9 +80,15 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun initRecyclerView(entity: List<MedicineEntity>) {
-        mAdapter.submitList(entity)
+        mAdapter.setData(entity)
         binding.recyclerviewAddMedicine.adapter = mAdapter
         binding.recyclerviewAddMedicine.layoutManager =
             LinearLayoutManager(requireContext())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        mAdapter.clearContextualActionMode()
     }
 }
