@@ -1,9 +1,11 @@
 package com.example.healthcareapp.ui.fragment.search
 
-import com.example.healthcareapp.data.model.Medicine
+sealed class SearchState<T>(
+    val data: T? = null,
+    val message: String? = null
+) {
 
-sealed class SearchState {
-    data class Success(val medicine: Medicine?) : SearchState()
-    object Fail: SearchState()
-    object Loading: SearchState()
+    class Success<T>(data: T) : SearchState<T>(data)
+    class Fail<T>(message: String?, data: T? = null) : SearchState<T>(data, message)
+    class Loading<T> : SearchState<T>()
 }

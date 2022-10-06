@@ -1,18 +1,17 @@
 package com.example.healthcareapp.ui.fragment.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthcareapp.adapter.SearchAdapter
+import com.example.healthcareapp.data.model.Item
 import com.example.healthcareapp.databinding.FragmentSearchResultBinding
 import com.example.healthcareapp.viewmodel.SearchMedicineViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,13 +38,39 @@ class SearchResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initSearchView()
-        initRecyclerView()
+        initViewModels()
+    }
+
+    private fun initViewModels() {
+        lifecycleScope.launch {
+            searchMedicineViewModel.searchMedicineResponse.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is SearchState.Success -> {
+                        result.data?.body?.items?.let {
+                            initRecyclerView(it)
+                            binding.recyclerViewSearchResult.visibility = View.VISIBLE
+                            binding.progressBarSearchResult.visibility = View.INVISIBLE
+                            binding.textViewSearchResultNoResult.visibility = View.INVISIBLE
+                        }
+                    }
+
+                    is SearchState.Loading -> {
+                        binding.progressBarSearchResult.visibility = View.VISIBLE
+                    }
+
+                    is SearchState.Fail -> {
+                        binding.progressBarSearchResult.visibility = View.INVISIBLE
+                        binding.recyclerViewSearchResult.visibility = View.INVISIBLE
+                        binding.textViewSearchResultNoResult.visibility = View.VISIBLE
+
+                    }
+                }
+            }
+        }
     }
 
     private fun initSearchView() {
-        binding.searchViewSearchResult.clearFocus()
         binding.searchViewSearchResult.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(search: String?): Boolean {
@@ -61,37 +86,37 @@ class SearchResultFragment : Fragment() {
         })
     }
 
-    private fun initRecyclerView() {
-        binding.recyclerViewSearchResult.adapter = searchAdapter
-        binding.recyclerViewSearchResult.layoutManager = LinearLayoutManager(requireContext())
+    private fun initRecyclerView(item: List<Item>) {
+        searchAdapter.setData(item)
+
+        binding.recyclerViewSearchResult.apply {
+            adapter = searchAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     private fun searchMedicine(searchText: String) {
-        lifecycleScope.launch {
-            repeatOnLifecycle(state = Lifecycle.State.RESUMED) {
-                searchMedicineViewModel.searchMedicine(
-                    searchMedicineViewModel.applySearchQueries(
-                        searchText
-                    )
-                )
-                searchMedicineViewModel.searchMedicineResponse.collect { result ->
-                    when (result) {
-                        is SearchState.Success -> {
-                            searchAdapter.submitList(result.medicine?.body?.items)
-                            binding.recyclerViewSearchResult.adapter = searchAdapter
-                            binding.progressBarSearchResult.visibility = View.INVISIBLE
-                        }
-                        is SearchState.Loading -> {
-                            binding.progressBarSearchResult.visibility = View.VISIBLE
-                        }
-                        is SearchState.Fail -> {
-                            binding.progressBarSearchResult.visibility = View.INVISIBLE
-                            Toast.makeText(requireContext(), "불러 올 수 없습니다.", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                }
-            }
-        }
+        searchMedicineViewModel.searchMedicine(
+            searchMedicineViewModel.applySearchQueries(
+                searchText
+            )
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
