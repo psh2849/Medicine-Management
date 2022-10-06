@@ -55,7 +55,7 @@ class AddMedicineDetailFragment : Fragment() {
         val today = Calendar.getInstance()
         val getCalculateDate = (expireDate!!.time - today.time.time) / (60 * 60 * 24 * 1000)
 
-        if(getCalculateDate - 1 < 0) {
+        if(getCalculateDate < 0) {
             binding.textViewAddDetailExpire.text = args.medicineEntity.expire
             binding.textViewAddDetailExpire.setTextColor(Color.RED)
             binding.textViewAddDetailExpire.typeface = Typeface.DEFAULT_BOLD
