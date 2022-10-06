@@ -3,13 +3,14 @@ package com.example.healthcareapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthcareapp.data.model.Item
 import com.example.healthcareapp.databinding.ItemSearchResultBinding
+import com.example.healthcareapp.util.DiffUtils
 
-class SearchAdapter : ListAdapter<Item, SearchAdapter.SearchViewHolder>(diffCallback) {
+class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
+    private var mItemList = emptyList<Item>()
 
     class SearchViewHolder(private val binding: ItemSearchResultBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -31,21 +32,19 @@ class SearchAdapter : ListAdapter<Item, SearchAdapter.SearchViewHolder>(diffCall
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        getItem(position)?.let { item ->
-            holder.bind(item)
-        }
+        holder.bind(mItemList[position])
     }
 
-    companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
-            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-                return oldItem.itemCode == newItem.itemCode
-            }
-
-            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-                return oldItem == newItem
-            }
-
-        }
+    override fun getItemCount(): Int {
+        return mItemList.size
     }
+
+    fun setData(newItemList: List<Item>) {
+        val searchMedicineDiffUtil = DiffUtils(mItemList, newItemList)
+        val diffUtilResult = DiffUtil.calculateDiff(searchMedicineDiffUtil)
+        mItemList = newItemList
+        diffUtilResult.dispatchUpdatesTo(this)
+    }
+
+
 }

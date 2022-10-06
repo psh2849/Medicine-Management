@@ -6,13 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.data.model.Type
 import com.example.healthcareapp.databinding.ItemAddSecondBinding
+import com.example.healthcareapp.util.DiffUtils
 
 class AddMedicineSecondAdapter :
-    ListAdapter<Type, AddMedicineSecondAdapter.AddSecondViewHolder>(diffCallback) {
+    RecyclerView.Adapter<AddMedicineSecondAdapter.AddSecondViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
+    private var mTypeItemList = emptyList<Type>()
 
     interface OnItemClickListener {
         fun onClick(v: View, position: Int)
@@ -42,23 +45,22 @@ class AddMedicineSecondAdapter :
     }
 
     override fun onBindViewHolder(holder: AddSecondViewHolder, position: Int) {
-        getItem(position)?.let { type ->
-            holder.bind(type)
-        }
+        holder.bind(mTypeItemList[position])
+
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
     }
 
-    companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Type>() {
-            override fun areItemsTheSame(oldItem: Type, newItem: Type): Boolean {
-                return oldItem === newItem
-            }
-
-            override fun areContentsTheSame(oldItem: Type, newItem: Type): Boolean {
-                return oldItem == newItem
-            }
-        }
+    override fun getItemCount(): Int {
+        return mTypeItemList.size
     }
+
+    fun setData(newTypeItem: List<Type>) {
+        val addMedicineDiffUtil = DiffUtils(mTypeItemList, newTypeItem)
+        val diffUtilResult = DiffUtil.calculateDiff(addMedicineDiffUtil)
+        mTypeItemList = newTypeItem
+        diffUtilResult.dispatchUpdatesTo(this)
+    }
+
 }
