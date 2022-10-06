@@ -74,7 +74,7 @@ class AddMedicineSecondFragment : Fragment() {
                         }
                     })
 
-                    mAdapter.submitList(typeList)
+                    mAdapter.setData(typeList)
                     binding.recyclerViewAddSecond.adapter = mAdapter
                     binding.recyclerViewAddSecond.layoutManager =
                         LinearLayoutManager(requireContext())
