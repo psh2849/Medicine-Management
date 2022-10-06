@@ -18,24 +18,6 @@ import java.util.*
 class AddMedicineBindingAdapter {
 
     companion object {
-
-        @BindingAdapter("addMedicineOnClick")
-        @JvmStatic
-        fun onClickLowLayout(constraintLayout: ConstraintLayout, medicineEntity: MedicineEntity) {
-            constraintLayout.setOnClickListener {
-                try {
-                    val action =
-                        AddMedicineFragmentDirections.actionAddMedicineFragmentToAddMedicineDetailFragment(
-                            medicineEntity
-                        )
-                    constraintLayout.findNavController().navigate(action)
-                } catch (e: Exception) {
-                    Log.d("AddMedicineBinding", e.toString())
-                }
-
-            }
-        }
-
         @BindingAdapter("addMedicineSetImage")
         @JvmStatic
         fun setImage(imageView: ImageView, image: String) {
@@ -67,7 +49,7 @@ class AddMedicineBindingAdapter {
             val today = Calendar.getInstance()
             val getCalculateDate = (expireDate!!.time - today.time.time) / (60 * 60 * 24 * 1000)
 
-            if(getCalculateDate - 1 < 0) {
+            if(getCalculateDate < 0) {
                 textView.text = expire
                 textView.setTextColor(Color.RED)
                 textView.typeface = Typeface.DEFAULT_BOLD
