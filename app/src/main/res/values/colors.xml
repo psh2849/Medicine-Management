@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#6200EA</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -18,4 +19,13 @@
     <color name="red">#ffb3ba</color>
     <color name="button_background">#f0f0f0</color>
     <color name="button_text">#c3c3c3</color>
+    <color name="colorPrimaryDark">#5502C8</color>
+    <color name="dark">#313C44</color>
+    <color name="darker">#151B20</color>
+    <color name="strokeColor">#80D1D1D1</color>
+    <color name="cardBackgroundColor">@color/lightGray</color>
+    <color name="statusBarColor">@color/colorPrimaryDark</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/dark</color>
+    <color name="cardBackgroundLightColor">#106200EA</color>
 </resources>
