@@ -18,8 +18,6 @@ class AddMedicineSecondViewModel @Inject constructor(
     private var typeItems = ArrayList<Type>()
     var saveType = ""
 
-    val readMedicine: LiveData<List<MedicineEntity>> = repository.local.readMedicine().asLiveData()
-
     init {
         typeItems = arrayListOf(
             Type("캡슐", false),
