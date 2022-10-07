@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "medicine_table")
 @Parcelize
-class MedicineEntity(
+data class MedicineEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val image: String,
