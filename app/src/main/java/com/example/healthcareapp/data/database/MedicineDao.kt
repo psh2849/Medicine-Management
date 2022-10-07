@@ -1,6 +1,7 @@
 package com.example.healthcareapp.data.database
 
 import androidx.room.*
+import com.example.healthcareapp.data.database.entity.FavoriteEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +15,13 @@ interface MedicineDao {
 
     @Delete
     suspend fun deleteMedicine(medicineEntity: MedicineEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavoriteMedicine(favoriteEntity: FavoriteEntity)
+
+    @Query("SELECT * FROM favorite_table ORDER BY id ASC")
+    fun readFavoriteMedicine(): Flow<List<FavoriteEntity>>
+
+    @Delete
+    suspend fun deleteFavoriteMedicine(favoriteEntity: FavoriteEntity)
 }

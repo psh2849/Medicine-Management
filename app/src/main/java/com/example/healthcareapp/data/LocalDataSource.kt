@@ -1,6 +1,7 @@
 package com.example.healthcareapp.data
 
 import com.example.healthcareapp.data.database.MedicineDao
+import com.example.healthcareapp.data.database.entity.FavoriteEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -18,5 +19,17 @@ class LocalDataSource @Inject constructor(
 
     suspend fun deleteMedicine(medicineEntity: MedicineEntity) {
         medicineDao.deleteMedicine(medicineEntity)
+    }
+
+    fun readFavoriteMedicine(): Flow<List<FavoriteEntity>> {
+        return medicineDao.readFavoriteMedicine()
+    }
+
+    suspend fun insertFavoriteMedicine(favoriteEntity: FavoriteEntity) {
+        medicineDao.insertFavoriteMedicine(favoriteEntity)
+    }
+
+    suspend fun deleteFavoriteMedicine(favoriteEntity: FavoriteEntity) {
+        medicineDao.deleteFavoriteMedicine(favoriteEntity)
     }
 }
