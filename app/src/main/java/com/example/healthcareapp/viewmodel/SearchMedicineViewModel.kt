@@ -26,6 +26,13 @@ class SearchMedicineViewModel @Inject constructor(
     private val _searchMedicineResponse: MutableLiveData<SearchState<Medicine>> = MutableLiveData()
     val searchMedicineResponse: LiveData<SearchState<Medicine>> get() = _searchMedicineResponse
 
+    init {
+        val map : HashMap<String, String> = applySearchQueries("a")
+
+        viewModelScope.launch {
+            getSearchedMedicine(map)
+        }
+    }
 
     fun searchMedicine(searchQuery: HashMap<String, String>) = viewModelScope.launch {
         getSearchedMedicine(searchQuery)
