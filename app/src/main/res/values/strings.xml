@@ -31,4 +31,6 @@
     <string name="using_medicine">사용 중인 약들</string>
     <string name="delete">삭제</string>
     <string name="no_result">조회 결과가 없습니다.</string>
+    <string name="favorite_description">즐겨찾기 한 약</string>
+    <string name="no_favorite_data">즐겨찾기 한 약이 없습니다.</string>
 </resources>
