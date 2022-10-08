@@ -16,6 +16,9 @@ interface MedicineDao {
     @Delete
     suspend fun deleteMedicine(medicineEntity: MedicineEntity)
 
+    @Update
+    suspend fun updateMedicine(medicineEntity: MedicineEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteMedicine(favoriteEntity: FavoriteEntity)
 

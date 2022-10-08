@@ -23,4 +23,10 @@ class AddMedicineViewModel @Inject constructor(
             repository.local.deleteMedicine(medicineEntity)
         }
     }
+
+    fun updateMedicine(medicineEntity: MedicineEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.updateMedicine(medicineEntity)
+        }
+    }
 }

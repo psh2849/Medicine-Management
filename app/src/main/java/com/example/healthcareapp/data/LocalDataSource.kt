@@ -21,6 +21,10 @@ class LocalDataSource @Inject constructor(
         medicineDao.deleteMedicine(medicineEntity)
     }
 
+    suspend fun updateMedicine(medicineEntity: MedicineEntity) {
+        medicineDao.updateMedicine(medicineEntity)
+    }
+
     fun readFavoriteMedicine(): Flow<List<FavoriteEntity>> {
         return medicineDao.readFavoriteMedicine()
     }
