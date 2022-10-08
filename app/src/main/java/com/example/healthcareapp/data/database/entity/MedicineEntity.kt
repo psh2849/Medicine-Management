@@ -13,7 +13,7 @@ data class MedicineEntity(
     val image: String,
     val name: String,
     val description: String,
-    val expire: String,
+    var expire: String,
     val type: String?
 ) : Parcelable
 

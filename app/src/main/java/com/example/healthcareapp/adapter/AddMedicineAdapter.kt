@@ -1,6 +1,9 @@
 package com.example.healthcareapp.adapter
 
+import android.app.DatePickerDialog
 import android.view.*
+import android.widget.Button
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -15,6 +18,7 @@ import com.example.healthcareapp.util.DiffUtils
 import com.example.healthcareapp.viewmodel.AddMedicineViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class AddMedicineAdapter(
     private val requireActivity: FragmentActivity,
@@ -30,6 +34,7 @@ class AddMedicineAdapter(
     private var selectedMedicines = arrayListOf<MedicineEntity>()
     private var mViewHolder = arrayListOf<AddMedicineViewHolder>()
     private var mMedicines = emptyList<MedicineEntity>()
+    private var updateDate = ""
 
     class AddMedicineViewHolder(private val binding: ItemAddMedicineBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -79,6 +84,10 @@ class AddMedicineAdapter(
                 applySelection(holder, currentMedicine)
                 true
             }
+        }
+
+        holder.itemView.findViewById<Button>(R.id.button_add_medicine_update).setOnClickListener {
+            getDatePicker(position)
         }
     }
 
@@ -183,6 +192,26 @@ class AddMedicineAdapter(
         if (this::mActionMode.isInitialized) {
             mActionMode.finish()
         }
+    }
+
+    private fun getDatePicker(position: Int) {
+        val calendar = Calendar.getInstance()
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _, changeYear, changeMonth, changeDay ->
+                updateDate = "$changeYear.${changeMonth + 1}.$changeDay"
+                mMedicines[position].expire = updateDate
+                updateNewExpireDate(position)
+            }
+        DatePickerDialog(requireActivity, dateSetListener, year, month, day).show()
+    }
+
+    private fun updateNewExpireDate(position: Int) {
+        addMedicineViewModel.updateMedicine(mMedicines[position])
     }
 
     fun setData(newMedicineList: List<MedicineEntity>) {
