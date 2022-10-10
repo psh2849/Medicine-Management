@@ -7,5 +7,4 @@
         android:icon="@drawable/ic_write"
         android:title="@string/write"
         app:showAsAction="ifRoom" />
-
 </menu>
