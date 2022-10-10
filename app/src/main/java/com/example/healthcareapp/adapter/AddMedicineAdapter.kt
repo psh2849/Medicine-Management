@@ -91,6 +91,10 @@ class AddMedicineAdapter(
         }
     }
 
+    override fun getItemCount(): Int {
+        return mMedicines.size
+    }
+
     private fun applySelection(
         holder: AddMedicineViewHolder,
         currentMedicine: MedicineEntity
@@ -109,6 +113,16 @@ class AddMedicineAdapter(
         changeActionModeTitleBar()
     }
 
+    private fun changeMedicineBackgroundColor(
+        holder: AddMedicineViewHolder,
+        strokeColor: Int
+    ) {
+
+        holder.itemView.findViewById<MaterialCardView>(R.id.cardView_add_medicine).strokeColor =
+            ContextCompat.getColor(requireActivity, strokeColor)
+
+    }
+
     private fun changeActionModeTitleBar() {
         when (selectedMedicines.size) {
             0 -> {
@@ -123,10 +137,6 @@ class AddMedicineAdapter(
                 mActionMode.title = "${selectedMedicines.size} items selected!"
             }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return mMedicines.size
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
@@ -148,16 +158,6 @@ class AddMedicineAdapter(
 
     private fun changeStatusBarColor(color: Int) {
         requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
-    }
-
-    private fun changeMedicineBackgroundColor(
-        holder: AddMedicineViewHolder,
-        strokeColor: Int
-    ) {
-
-        holder.itemView.findViewById<MaterialCardView>(R.id.cardView_add_medicine).strokeColor =
-            ContextCompat.getColor(requireActivity, strokeColor)
-
     }
 
     override fun onActionItemClicked(mode: ActionMode?, menu: MenuItem?): Boolean {
