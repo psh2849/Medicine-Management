@@ -12,5 +12,12 @@ class Constants {
         const val QUERY_NUM_OF_ROWS = "numOfRows"
 
         const val REQUEST_CODE = 100
+
+        const val CHANNEL_ID = "medicineChannel"
+        const val CHANNEL_NAME = "MyMedicineChannel"
+        const val CHANNEL_DESCRIPTION = "Channel for medicine alarm"
+        const val RECEIVER_TITLE = "약을 복용해주세요!"
+        const val RECEIVER_CONTENT = "\"'나의 약 추가' 에서 오른쪽으로 밀어서 약을 섭취해봐요!\""
+
     }
 }
