@@ -1,6 +1,7 @@
 package com.example.healthcareapp.data.database
 
 import androidx.room.*
+import com.example.healthcareapp.data.database.entity.EatEntity
 import com.example.healthcareapp.data.database.entity.FavoriteEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import kotlinx.coroutines.flow.Flow
@@ -27,4 +28,12 @@ interface MedicineDao {
 
     @Delete
     suspend fun deleteFavoriteMedicine(favoriteEntity: FavoriteEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertEatMedicine(eatEntity: EatEntity)
+
+    @Query("SELECT * FROM eat_table, medicine_table " +
+            "WHERE :today LIKE substr(date, 1, 7) " +
+            "AND medicine_table.id = :id")
+    fun getEatMedicineMonth(today: String, id: Int): Flow<List<EatEntity>>
 }
