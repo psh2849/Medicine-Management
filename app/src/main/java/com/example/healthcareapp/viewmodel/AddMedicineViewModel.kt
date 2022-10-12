@@ -1,7 +1,11 @@
 package com.example.healthcareapp.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.healthcareapp.data.MedicineRepository
+import com.example.healthcareapp.data.database.entity.EatEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,5 +29,15 @@ class AddMedicineViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.updateMedicine(medicineEntity)
         }
+    }
+
+    fun insertEatMedicine(eatEntity: EatEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertEatMedicine(eatEntity)
+        }
+    }
+
+    fun getEatMedicineMonth(today: String, id: Int): LiveData<List<EatEntity>> {
+        return repository.local.getEatMedicineMonth(today, id).asLiveData()
     }
 }
