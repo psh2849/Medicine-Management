@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="medicineEntity"
             type="com.example.healthcareapp.data.database.entity.MedicineEntity" />
@@ -94,6 +95,16 @@
                     app:layout_constraintStart_toEndOf="@id/imageView_add_medicine_image"
                     app:layout_constraintTop_toBottomOf="@id/textView_add_medicine_expire"
                     tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/imageView_eat_medicine"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_band" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

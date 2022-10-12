@@ -1,9 +1,10 @@
 package com.example.healthcareapp.adapter
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.view.*
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -11,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthcareapp.R
+import com.example.healthcareapp.data.database.entity.EatEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
 import com.example.healthcareapp.databinding.ItemAddMedicineBinding
 import com.example.healthcareapp.ui.fragment.addMedicine.AddMedicineFragmentDirections
@@ -18,6 +20,7 @@ import com.example.healthcareapp.util.DiffUtils
 import com.example.healthcareapp.viewmodel.AddMedicineViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddMedicineAdapter(
@@ -88,6 +91,10 @@ class AddMedicineAdapter(
 
         holder.itemView.findViewById<Button>(R.id.button_add_medicine_update).setOnClickListener {
             getDatePicker(position)
+        }
+
+        holder.itemView.findViewById<ImageView>(R.id.imageView_eat_medicine).setOnClickListener {
+            getAlertDialog(position)
         }
     }
 
@@ -212,6 +219,33 @@ class AddMedicineAdapter(
 
     private fun updateNewExpireDate(position: Int) {
         addMedicineViewModel.updateMedicine(mMedicines[position])
+    }
+
+    private fun getAlertDialog(position: Int) {
+        AlertDialog.Builder(requireActivity)
+            .setTitle("약 복용")
+            .setMessage("오늘 약을 드셨으면 확인을 눌러주세요!")
+            .setPositiveButton(
+                "확인"
+            ) { _, _ -> insertEatDatabase(position) }
+            .setNegativeButton(
+                "취소"
+            ) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
+    private fun insertEatDatabase(position: Int) {
+        val dateTimeFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+        val time = dateTimeFormat.format(System.currentTimeMillis())
+
+        addMedicineViewModel.insertEatMedicine(
+            EatEntity(
+                0,
+                time,
+                mMedicines[position]
+            )
+        )
     }
 
     fun setData(newMedicineList: List<MedicineEntity>) {
