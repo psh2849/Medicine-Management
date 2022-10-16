@@ -1,129 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    tools:context=".ui.fragment.detail.DetailFragment">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView_add_detail_mainImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/mainImage"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView_add_detail_description_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/medicine_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_add_detail_mainImage"
-        tools:layout_editor_absoluteY="175dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        tools:context=".ui.fragment.detail.DetailFragment">
 
-    <TextView
-        android:id="@+id/textView_add_detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_title"
-        tools:layout_editor_absoluteY="196dp"
-        tools:text="한미치쏙정600밀리그램(디오스민)" />
+        <ImageView
+            android:id="@+id/imageView_add_detail_mainImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/mainImage"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
-    <View
-        android:id="@+id/view_detail1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/search_background_row_layout"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_title" />
+        <TextView
+            android:id="@+id/textView_add_detail_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/medicine_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_add_detail_mainImage"
+            tools:layout_editor_absoluteY="175dp" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_description_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/normal_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_detail1"
-        tools:layout_editor_absoluteY="175dp" />
+        <TextView
+            android:id="@+id/textView_add_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_title"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="한미치쏙정600밀리그램(디오스민)" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_type"
-        tools:layout_editor_absoluteY="196dp"
-        tools:text="한미약품(주)" />
+        <View
+            android:id="@+id/view_detail1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_title" />
 
-    <View
-        android:id="@+id/view_detail2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/search_background_row_layout"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_type" />
+        <TextView
+            android:id="@+id/textView_add_detail_description_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/normal_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail1"
+            tools:layout_editor_absoluteY="175dp" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_description_effect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/medicine_expireDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_detail2"
-        tools:layout_editor_absoluteY="175dp" />
+        <TextView
+            android:id="@+id/textView_add_detail_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_type"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="한미약품(주)" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_expire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_effect"
-        tools:layout_editor_absoluteY="196dp"
-        tools:text="2022.10.04" />
+        <View
+            android:id="@+id/view_detail2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_type" />
 
-    <View
-        android:id="@+id/view_detail3"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/search_background_row_layout"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_expire" />
+        <TextView
+            android:id="@+id/textView_add_detail_description_effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/medicine_expireDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail2"
+            tools:layout_editor_absoluteY="175dp" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_description_use"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/explain_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_detail3"
-        tools:layout_editor_absoluteY="175dp" />
+        <TextView
+            android:id="@+id/textView_add_detail_expire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_effect"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="2022.10.04" />
 
-    <TextView
-        android:id="@+id/textView_add_detail_use"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_use"
-        tools:layout_editor_absoluteY="196dp"
-        tools:text="약 설명" />
+        <View
+            android:id="@+id/view_detail3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_expire" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView_add_detail_description_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/explain_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail3"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:id="@+id/textView_add_detail_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_use"
+            tools:layout_editor_absoluteY="196dp"
+            tools:text="약 설명" />
+
+        <View
+            android:id="@+id/view_detail4"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/search_background_row_layout"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_use" />
+
+        <TextView
+            android:id="@+id/textView_add_detail_description_eat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/medicine_graph"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail4"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart_add_detail_graph"
+            android:layout_width="360dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_eat" />
+
+        <TextView
+            android:id="@+id/textView_add_detail_no_eat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_eat_medicine"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_add_detail_description_eat" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
