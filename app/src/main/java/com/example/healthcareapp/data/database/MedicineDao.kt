@@ -32,8 +32,8 @@ interface MedicineDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEatMedicine(eatEntity: EatEntity)
 
-    @Query("SELECT * FROM eat_table, medicine_table " +
-            "WHERE :today LIKE substr(date, 1, 7) " +
-            "AND medicine_table.id = :id")
+    @Query("SELECT * FROM eat_table " +
+            "WHERE :today LIKE substr(date, 1, 7)" +
+            "AND :id = eat_table.id")
     fun getEatMedicineMonth(today: String, id: Int): Flow<List<EatEntity>>
 }
