@@ -1,15 +1,14 @@
 package com.example.healthcareapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.healthcareapp.data.MedicineRepository
 import com.example.healthcareapp.data.database.entity.EatEntity
 import com.example.healthcareapp.data.database.entity.MedicineEntity
+import com.github.mikephil.charting.data.BarEntry
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 import javax.inject.Inject
 
 @HiltViewModel
